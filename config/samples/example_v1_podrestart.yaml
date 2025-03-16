@@ -1,0 +1,11 @@
+apiVersion: example.example.com/v1
+kind: PodRestart
+metadata:
+  labels:
+    app.kubernetes.io/name: podrestart-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: podrestart-sample
+spec:
+  restartInterval: 2m
+  labelSelector:
+    app: web
