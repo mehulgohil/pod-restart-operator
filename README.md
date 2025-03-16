@@ -112,3 +112,30 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
+## Steps
+```shell
+# Initialize a new Operator SDK project with the specified domain and repository
+operator-sdk init --domain example.com --repo github.com/mehulgohil/pod-restart-operator
+
+# Create a new API with the specified group, version, and kind, including resource and controller
+operator-sdk create api --group example --version v1 --kind PodRestart --resource --controller
+
+#After modifying the *_types.go file always run the following command to update the generated code for that resource type:
+make generate
+
+# Build the Docker image for the operator
+make docker-build IMG="github.com/mehulgohil/pod-restart-operator:v0.0.1"
+
+# Deploy the operator to the Kubernetes cluster using the specified image
+make deploy IMG="github.com/mehulgohil/pod-restart-operator:v0.0.1"
+
+# Generate the Kubernetes manifests for the project
+make manifests
+
+# Install the Custom Resource Definitions (CRDs) into the cluster
+make install
+
+# Uninstall the operator from the Kubernetes cluster
+make undeploy
+```
+
